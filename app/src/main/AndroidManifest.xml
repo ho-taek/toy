@@ -16,6 +16,7 @@
             android:name=".flow.FlowActivity"
             android:exported="true"
             android:label="toy"
+            android:launchMode="singleTop"
             android:theme="@style/Theme.Toy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,11 +38,13 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.Toy">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 
