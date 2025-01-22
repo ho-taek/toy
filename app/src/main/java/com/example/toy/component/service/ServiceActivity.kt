@@ -1,4 +1,4 @@
-package com.example.toy.service
+package com.example.toy.component.service
 
 import android.content.ComponentName
 import android.content.Context

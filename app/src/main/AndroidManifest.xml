@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Toy"
         tools:targetApi="31">
+
+        <provider
+            android:name=".component.contentprovider.MyContentProvider"
+            android:authorities="com.example.toy.component.provider"
+            android:exported="true"
+            android:grantUriPermissions="true" />
+
+
         <activity
             android:name=".flow.FlowActivity"
             android:exported="true"
@@ -31,7 +39,7 @@
             android:name=".architecture.MvpActivity"
             android:exported="false" />
         <activity
-            android:name=".service.ServiceActivity"
+            android:name=".component.service.ServiceActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
