@@ -1,5 +1,7 @@
 package com.example.toy
 
+import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,9 +13,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.toy.component.broadcast.MyReceiver
 import com.example.toy.ui.theme.ToyTheme
 
+enum class Day(val day : String){
+    MONDAY("월요일"), TUESDAY("화요일");
+
+    companion object{
+        fun getDay(name : String) : Day{
+            return values().find { it.name == name } ?: MONDAY
+        }
+    }
+}
+
 class MainActivity : ComponentActivity() {
+    private val myReceiver = MyReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +42,23 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        val intent = Intent("com.example.toy.CUSTOM_ACTION").apply {
+            putExtra("message", "이벤트 전달")
+        }
+        sendBroadcast(intent)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val filter = IntentFilter("android.intent.action.BOOT_COMPLETED")
+        registerReceiver(myReceiver, filter)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(myReceiver)
     }
 }
 

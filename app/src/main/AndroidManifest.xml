@@ -19,6 +19,13 @@
             android:exported="true"
             android:grantUriPermissions="true" />
 
+        <receiver android:name=".component.broadcast.MyReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.toy.CUSTOM_ACTION" />
+            </intent-filter>
+        </receiver>
+
 
         <activity
             android:name=".flow.FlowActivity"
