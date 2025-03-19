@@ -1,21 +1,22 @@
 package com.example.toy.coroutine
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.yield
 
 fun main() = runBlocking {
-    val startTime = System.currentTimeMillis()
-    val job = launch(Dispatchers.Default) {
-        repeat(10) { i ->
-            delay(1000) // 네트워크 요청 대기
-            println("${getElapsedTimeStart(startTime)} 데이터 다운 ${i*10}%")
-
+        val jobs = launch(Dispatchers.Default) {
+            var i = 0
+            while (this.isActive) {
+                println("실행중 ${i++}")
+            }
         }
-    }
-
-    delay(2000) // 2초 후 사용자가 취소
-    job.cancel()
-    println("취소한 후에 해야할 작업들")
+        delay(1000)
+        println("취소 시도")
+        jobs.cancel()
+        println("취소 완료")
 }
